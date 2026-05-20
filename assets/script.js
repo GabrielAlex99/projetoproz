@@ -10,7 +10,7 @@ const acoes = [
 const container = document.getElementById('container-acoes');
 
 if (container) {
-  for (let i = 0; i < acoes.length; i++ ) {
+  for (let i = 0; i < acoes.length; i++) {
     const item = acoes[i];
     const div = document.createElement('div');
     div.className = 'acao-item';
@@ -19,4 +19,24 @@ if (container) {
     <p class = "acao-texto"> ${item.texto}</p>`;
     container.appendChild(div);
   }
+}
+
+const form = document.getElementById('formulario-adesao');
+const msg = document.getElementById('mensagem-retorno');
+
+if (form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if (form.checkValidity()) {
+      const nome = document.getElementById('nome').value;
+      msg.textContent = `✅ Sucesso, ${nome}! Adesão registrada.`;
+      msg.className = 'mensagem-retorno sucesso';
+      form.reset();
+    } else {
+      msg.textContent = '❌ preencha os campos corretamente.';
+      msg.className = 'mensagem-retorno erro';
+      msg.style.display = 'block';
+    }
+  }); 
 }
